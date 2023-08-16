@@ -5,8 +5,15 @@ import 'package:flutter/services.dart';
 import '../../utils/color_utils.dart';
 import '../widgets/color_palette.dart';
 
-class ColorSelectionPage extends StatelessWidget {
-  const ColorSelectionPage({Key? key}) : super(key: key);
+class ColorSelectionPage extends StatefulWidget {
+  const ColorSelectionPage({super.key});
+
+  @override
+  State<ColorSelectionPage> createState() => _ColorSelectionPageState();
+}
+
+class _ColorSelectionPageState extends State<ColorSelectionPage> {
+  String _color = "0C356A";
 
   void showDialog() {
     Get.dialog(const AlertDialog(
@@ -20,6 +27,7 @@ class ColorSelectionPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Color palette app'),
+          backgroundColor: ColorUtils.FromHex(_color),
           actions: [
             IconButton(onPressed: showDialog, icon: Icon(Icons.info_outline))
           ],
@@ -81,6 +89,9 @@ class ColorSelectionPage extends StatelessWidget {
   }
 
   void showColor(String value) {
-    // aqui llamar al callback del main widget
+    print(value);
+    setState(() {
+      _color = value;
+    });
   }
 }
